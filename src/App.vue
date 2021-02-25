@@ -1,19 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <pointsTable :info="info" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import pointsTable from "./components/pointsTable.vue";
+
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    pointsTable,
+  },
+  data() {
+    return {
+      info: [],
+    };
+  },
+ 
+  created() {
+    fetch("./data.json")
+      .then((res) => res.json())
+      .then((data) => this.info =
+      data.standings.stages.stage[0].group[0].entities.entity)
+    
+  },
+};
 </script>
 
 <style>
@@ -25,4 +38,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+
 </style>
