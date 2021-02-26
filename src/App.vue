@@ -20,7 +20,7 @@ export default {
   },
  
   created() {
-    fetch("./data.json")
+    fetch("data.json")
       .then((res) => res.json())
       .then((data) => this.info =
       data.standings.stages.stage[0].group[0].entities.entity)
